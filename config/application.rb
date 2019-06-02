@@ -1,7 +1,20 @@
-require_relative 'boot'
+class Application < Rails::Application
+  config.load_defaults 5.1
 
+  config.generators do |generate|
+    generate.helper false
+    generate.assets false
+    generate.view_specs false
+    generate.helper_specs false
+    generate.routing_specs false
+    generate.controller_specs false
+    generate.system_tests false
+  end
+end
+
+
+require_relative 'boot'
 require "rails"
-# Pick the frameworks you want:
 require "active_model/railtie"
 require "active_job/railtie"
 require "active_record/railtie"
@@ -14,11 +27,6 @@ require "sprockets/railtie"
 
 Bundler.require(*Rails.groups)
 
-# config.generators do |g|
-#   g.assets = false
-#   g.helper = false
-#   g.view_specs = false
-# end
 
 module Under
   class Application < Rails::Application
